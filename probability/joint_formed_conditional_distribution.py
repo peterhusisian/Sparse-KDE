@@ -1,4 +1,5 @@
 from probability.conditional_distribution import ConditionalDistribution
+import numpy as np
 
 class JointFormedConditionalDistribution(ConditionalDistribution):
     '''
@@ -17,9 +18,12 @@ class JointFormedConditionalDistribution(ConditionalDistribution):
         self.__dtype = dtype
 
     def conditional_prob(self, X, Y):
-        X_Y_merged = np.zeros((X.shape[1] + Y.shape[1]), dtype = self.__dtype)
-        X_Y_merged[:X.shape[1]] = X
-        X_Y_merged[X.shape[1]:] = Y
-        out = self.__numerator_dist(X_Y_merged)
-        out /= self.__denominator_dist(Y)
+        #inputs autoboxed to match cases where p(x|y) takes scalar x or y,
+        #as numerator and denominator joint distributions are expected to
+        #handle element-wise computation, and expect each input to be a vector
+        X_Y_merged = np.zeros((X.shape[0], X.shape[1] + Y.shape[1]), dtype = self.__dtype)
+        X_Y_merged[:,:X.shape[1]] = X
+        X_Y_merged[:,X.shape[1]:] = Y
+        out = self.__numerator_dist.joint_prob(X_Y_merged)
+        out /= self.__denominator_dist.joint_prob(Y)
         return out
