@@ -2,13 +2,14 @@ from probability.bayesian_net.bayesian_net import BayesianNet
 from probability.sampleable import Sampleable
 from abc import ABC
 import graph.topological_sort as topological_sort
+import numpy as np
 
 class SampleableBayesianNet(BayesianNet, Sampleable):
 
     def __init__(self, dag, conditional_sampleable_dists):
         BayesianNet.__init__(self, dag, conditional_sampleable_dists)
 
-    
+
     def sample(self, n_samples):
         #use a topological sort to determine sample order
         order = topological_sort.topological_sort(self._dag)
