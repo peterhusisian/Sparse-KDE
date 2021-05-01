@@ -68,7 +68,6 @@ def bayesian_net_log_likelihood_differential(X_train, X_test, kernel, lambd, reg
             else:
                 new_dag[edge[0], edge[1]] = 1
             bayesian_net_new = KDEBayesianNet(X_train, new_dag, kernel)
-            print(bayesian_net.node_prob(edge[1], X_test))
             prob_differential = bayesian_net_new.node_prob(edge[1], X_test)/bayesian_net.node_prob(edge[1], X_test)
             likelihood_differential[i] = np.sum(np.log(prob_differential)) + lambd * np.sum(dag)**regularizer_order - (lambd * np.sum(new_dag)**regularizer_order)
 
