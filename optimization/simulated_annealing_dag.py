@@ -4,7 +4,7 @@ import numpy as np
 '''
 is j an ancestor of i in adjacency matrix dag A
 '''
-def isAncestor(A, j, i):
+def is_ancestor(A, j, i):
     checked = np.zeros(A.shape[0], dtype=bool)
     stack = [i]
     while(stack):
@@ -35,7 +35,7 @@ def neighbors_func(A):
                 possibilities_list.append(B)
             else:
                 #Checks and produces neighbors with added edges
-                if not isAncestor(A, j, i):
+                if not is_ancestor(A, j, i):
                     B= np.empty_like(A)
                     B[:] = A
                     B[i, j]=1
@@ -96,7 +96,7 @@ def neighbors_func(A):
                 possibilities_list.append(B)
             else:
                 #Checks and produces neighbors with added edges
-                if not isAncestor(A, j, i):
+                if not is_ancestor(A, j, i):
                     B= np.empty_like(A)
                     B[:] = A
                     B[i, j]=1
@@ -119,7 +119,7 @@ def neighbors_and_edge_func(A):
                 possibilities_list.append((B, (i, j)))
             else:
                 #Checks and produces neighbors with added edges
-                if not isAncestor(A, j, i):
+                if not is_ancestor(A, j, i):
                     B= np.empty_like(A)
                     B[:] = A
                     B[i, j]=1
