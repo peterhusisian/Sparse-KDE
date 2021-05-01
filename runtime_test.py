@@ -13,8 +13,7 @@ for d in d_range(d_range[0], d_range[1] + 1, d_inc):
     W = np.random.rand(d,d) * dag.astype(np.float64)
     b = np.random.rand(d)
     sigma_squareds = 10*np.random.rand(d) + 1
-
     LGBN = LinearGaussianBayesianNet(W, b, sigma_squareds)
-
-
     X = LGBN.sample(N)
+
+    

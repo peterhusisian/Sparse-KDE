@@ -50,40 +50,7 @@ def simulated_annealing(initial_state, initial_temp, final_temp, alpha, get_cost
 
     return best_x
 
-    '''
-    current_temp = initial_temp
-    solution = initial_state
-
-    best_iterate = solution
-    best_iterate_cost = get_cost(best_iterate)
-
-    iter_num = 0
-    while current_temp > final_temp:
-        neighbor = random.choice(get_neighbors(solution))
-
-        curr_cost = get_cost(neighbor)
-
-
-        if iter_num % print_iters == 0:
-            print("curr_cost (" + str(iter_num) + "): ", curr_cost)
-            print("best iterate cost: ", best_iterate_cost)
-
-        cost_diff = curr_cost - get_cost(solution)
-
-        if cost_diff < 0:
-            solution = neighbor
-            best_iterate_cost = curr_cost
-            best_iterate = neighbor
-        else:
-
-            if random.uniform(0, 1) < math.exp(cost_diff/current_temp):
-                solution = neighbor
-
-        current_temp -= alpha
-        iter_num += 1
-    print(best_iterate)
-    return best_iterate
-    '''
+    
 
 if __name__ == "__main__":
     '''

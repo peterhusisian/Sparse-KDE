@@ -51,6 +51,8 @@ def degree_constrained_neighbors_func(max_deg):
                 neighbors.append(neighbor)
         return neighbors
     return out
+
+    
 def degree_constrained_neighbors_func_modified(max_deg):
     def out(A):
 
