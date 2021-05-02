@@ -25,7 +25,6 @@ def bayesian_net_log_likelihood(X_train, X_test, kernel, lambd, regularizer_orde
 
         if negative:
             likelihoods *= -1
-
         if wasnt_list:
             return likelihoods[0]
 
@@ -68,9 +67,9 @@ def bayesian_net_log_likelihood_differential(X_train, X_test, kernel, lambd, reg
             else:
                 new_dag[edge[0], edge[1]] = 1
             bayesian_net_new = KDEBayesianNet(X_train, new_dag, kernel)
-            prob_differential = bayesian_net_new.node_prob(edge[1], X_test)/bayesian_net.node_prob(edge[1], X_test)
-            likelihood_differential[i] = np.sum(np.log(prob_differential)) + lambd * np.sum(dag)**regularizer_order - (lambd * np.sum(new_dag)**regularizer_order)
-
+            prob_differential = bayesian_net.node_prob(edge[1], X_test)/bayesian_net_new.node_prob(edge[1], X_test)
+            likelihood_differential[i] = np.sum(np.log(prob_differential)) - lambd * np.sum(dag)**regularizer_order + (lambd * np.sum(new_dag)**regularizer_order)
+        #print(likelihood_differential)
         if wasnt_list:
             return likelihood_differential[0]
 
