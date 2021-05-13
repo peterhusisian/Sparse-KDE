@@ -25,8 +25,8 @@ max_deg = 2
 
 X = load_data.load_clean_nyc("./dataset/flight_data.csv").to_numpy()
 
-X_train = X[:int(0.7 * X.shape[0]), :]
-X_test = X[int(0.7 * X.shape[0]):, :]
+X_train = X[:int(0.2 * X.shape[0]), :]
+X_test = X[int(0.2 * X.shape[0]):int(0.21 * X.shape[0]), :]
 bandwidth = silverman_scalar_bandwidth(X_train)
 
 initial_dags = [random_graph.random_max_deg_dag(X.shape[1], max_deg) for i in range(0, 1)]
