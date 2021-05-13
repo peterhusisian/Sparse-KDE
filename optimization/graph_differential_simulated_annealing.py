@@ -18,9 +18,6 @@ def simulated_annealing(initial_state, initial_temp, final_temp, alpha, initial_
 
     best_x = x
     best_e = e
-    print(T)
-    print(initial_temp)
-    print(final_temp)
     while T > final_temp:
         x_prime, (i, j) = random.choice(get_neighbors_and_edge(x))
         cost_differential = get_cost_differential(x, (i, j))
